@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import { Header } from "../page";
 import { getChatGPTUser, chatGPTSignInPath } from "../chatgpt-auth";
 import { isAdmin } from "@/lib/admin";
@@ -7,6 +7,7 @@ export const dynamic="force-dynamic";
 export default async function AdminPage(){
   const user=await getChatGPTUser();
   const allowed=await isAdmin();
-  if(!allowed) return <main><Header/><div className="gate"><span className="eyebrow">STUDIO ONLY</span><h1>Welcome to the studio.</h1><p>{user?"This account is not on the studio admin list. Please sign in with the approved email address.":"Sign in with the approved studio email to see bookings and manage orders."}</p>{!user&&<a href={chatGPTSignInPath("/admin")} target="_top" className="button button-dark">Sign in to dashboard</a>}<p style={{marginTop:18}}><Link href="/">← Back to home</Link></p></div></main>;
+  if(!allowed) return <main><Header/><div className="gate"><span className="eyebrow">STUDIO ONLY</span><h1>Welcome to the studio.</h1><p>{user?"This account is not on the studio admin list. Please sign in with the approved email address.":"Sign in with the approved studio email to see bookings and manage orders."}</p>{!user&&<a href={chatGPTSignInPath("/admin")} target="_top" className="button button-dark">Sign in to dashboard</a>}<p style={{marginTop:18}}><a href="/">← Back to home</a></p></div></main>;
   return <main><Header/><Dashboard/></main>;
 }
+

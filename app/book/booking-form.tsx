@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 const products=["Handmade cards","Thoughtful gift boxes","Mini paintings","Something else"];
 export default function BookingForm({initialProduct}:{initialProduct:string}){
@@ -19,7 +19,7 @@ export default function BookingForm({initialProduct}:{initialProduct:string}){
     }catch(err){setError(err instanceof Error?err.message:"Could not send the request.");}
     finally{setBusy(false);}
   }
-  if(receipt) return <div className="booking-form"><div className="success"><CheckCircle2 size={38} style={{margin:"0 auto 15px",color:"#60775e"}}/><h2>Your idea is on its way!</h2><p>Thank you for sharing it. Your booking request has been saved. We’ll use your contact details to discuss the design, price and timeline before confirming the order.</p><p style={{fontSize:11}}>Reference: {receipt.slice(0,8).toUpperCase()}</p><Link href="/" className="button button-dark">Back to the studio <ArrowRight size={17}/></Link></div></div>;
+  if(receipt) return <div className="booking-form"><div className="success"><CheckCircle2 size={38} style={{margin:"0 auto 15px",color:"#60775e"}}/><h2>Your idea is on its way!</h2><p>Thank you for sharing it. Your booking request has been saved. We’ll use your contact details to discuss the design, price and timeline before confirming the order.</p><p style={{fontSize:11}}>Reference: {receipt.slice(0,8).toUpperCase()}</p><a href="/" className="button button-dark">Back to the studio <ArrowRight size={17}/></a></div></div>;
   return <form className="booking-form" onSubmit={submit}><h2>Tell us your lovely idea</h2><p className="intro">A few details help us imagine and plan your handmade piece.</p><div className="form-grid">
     <div className="field"><label htmlFor="name">Your name *</label><input id="name" name="name" required minLength={2} maxLength={100} placeholder="What should we call you?"/></div>
     <div className="field"><label htmlFor="email">Email address *</label><input id="email" type="email" name="email" required placeholder="you@example.com"/></div>
@@ -32,4 +32,5 @@ export default function BookingForm({initialProduct}:{initialProduct:string}){
     <div className="field full" style={{position:"absolute",left:"-10000px"}} aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" tabIndex={-1} autoComplete="off"/></div>
   </div><p className="field-help">Submitting this form is an enquiry, not a paid order. We’ll confirm availability, price, timing and delivery with you first.</p>{error&&<div className="error" role="alert">{error}</div>}<button className="button button-dark" type="submit" disabled={busy}>{busy?"Sending your request...":"Send my request"} <ArrowRight size={18}/></button></form>;
 }
+
 
