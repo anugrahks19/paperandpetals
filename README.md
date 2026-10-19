@@ -18,7 +18,7 @@ The public booking page is at /book. The private dashboard is at /admin. An appr
 
 ## Deployment
 
-The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into builds and the running app. Set ADMIN_EMAILS as an application environment value. The build command runs the database setup and next build; the start command runs next start on the platform port.
+The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into builds and the running app. Set ADMIN_EMAILS as an application environment value. The build command runs next build. At startup, an idempotent script creates any missing booking table and then runs next start on the platform port.
 
 The old ChatGPT Sites deployment has separate storage. Its data is not shared with Antideploy. At migration time, that old database had no customer orders.
 

@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth/server";
+import { getAuth } from "@/lib/auth/server";
 import { isAdminEmail } from "@/lib/admin";
 
-const handlers = auth.handler();
-export const GET = handlers.GET;
+export async function GET(request:NextRequest, context:{params:Promise<{path:string[]}>}) {
+  return getAuth().handler().GET(request,context);
+}
 export async function POST(request:NextRequest, context:{params:Promise<{path:string[]}>}) {
   const path=(await context.params).path.join("/");
   if(path==="sign-up/email" || path==="sign-in/email") {
@@ -13,5 +14,5 @@ export async function POST(request:NextRequest, context:{params:Promise<{path:st
     const body=await request.clone().json().catch(()=>null) as {email?:string}|null;
     if(!isAdminEmail(body?.email)) return NextResponse.json({error:"This email is not approved for studio access."},{status:403});
   }
-  return handlers.POST(request,context);
+  return getAuth().handler().POST(request,context);
 }
