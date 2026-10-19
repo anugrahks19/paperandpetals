@@ -5,7 +5,7 @@ export function Header() {
   return <header className="header"><a href="/" className="brand"><Flower2 size={27} strokeWidth={1.4}/><span>paper <em>&</em> petals<small>HANDMADE STUDIO</small></span></a><nav><a href="/#collection">Collection</a><a href="/#story">Our story</a><a href="/#process">How it works</a></nav><a href="/book" className="header-button">Book a creation <ArrowRight size={16}/></a></header>;
 }
 export function Footer() {
-  return <footer className="footer"><div><div className="brand"><Flower2 size={28}/><span>paper <em>&</em> petals<small>HANDMADE STUDIO</small></span></div><p>Little creations, lasting memories.</p></div><div className="footer-links"><a href="/#collection">Collection</a><a href="/#process">How it works</a><a href="/book">Custom booking</a><a href="/admin">Studio dashboard</a></div><div className="copyright">© 2026 Paper & Petals · Made with care in India</div></footer>;
+  return <footer className="footer"><div><div className="brand"><Flower2 size={28}/><span>paper <em>&</em> petals<small>HANDMADE STUDIO</small></span></div><p>Little creations, lasting memories.</p></div><div className="footer-links"><a href="/#collection">Collection</a><a href="/#process">How it works</a><a href="/book">Custom booking</a></div><div className="copyright">© 2026 Paper & Petals · Made with care in India</div></footer>;
 }
 const products = [
   {title:"Handmade cards",price:"From ₹129",description:"A little paper keepsake for the words that matter.",image:"/images/gifts.png",position:"30% 50%"},
@@ -21,5 +21,6 @@ export default function Home() {
     <section className="section process" id="process"><span className="eyebrow">SIMPLE AS ONE, TWO, THREE</span><h2>Your idea, <em>beautifully made.</em></h2><div className="steps"><div><span>01</span><h3>Share your idea</h3><p>Choose a product and tell us about the occasion, colours and personal details.</p></div><div><span>02</span><h3>Plan together</h3><p>We’ll confirm the design, price and timeline before any making begins.</p></div><div><span>03</span><h3>Made just for you</h3><p>Your piece is crafted by hand, thoughtfully packed and prepared for delivery.</p></div></div></section>
     <section className="closing"><span className="asterisk">✳</span><span className="eyebrow">LET’S MAKE SOMEONE SMILE</span><h2>Have a little idea?<br/><em>Let’s make it lovely.</em></h2><p>Birthdays, anniversaries, thank-yous, or just because—tell us what you imagine.</p><a href="/book" className="button button-light">Start a custom request <ArrowRight size={18}/></a></section><Footer/></main>;
 }
+
 
 
