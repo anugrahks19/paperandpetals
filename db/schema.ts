@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-export const orders = sqliteTable("orders", {
+import { pgTable, text } from "drizzle-orm/pg-core";
+export const orders = pgTable("orders", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
@@ -15,7 +15,7 @@ export const orders = sqliteTable("orders", {
   paymentStatus: text("payment_status").notNull().default("unpaid"),
   deliveryNote: text("delivery_note"),
   adminNotes: text("admin_notes"),
-  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`)
+  createdAt: text("created_at").notNull().default(sql`(now() at time zone 'utc')::text`),
+  updatedAt: text("updated_at").notNull().default(sql`(now() at time zone 'utc')::text`)
 });
 
