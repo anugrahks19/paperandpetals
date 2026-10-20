@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-const products=["Handmade cards","Thoughtful gift boxes","Mini paintings","Something else"];
+import { bookingProducts } from "@/lib/products";
 export default function BookingForm({initialProduct}:{initialProduct:string}){
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState("");
@@ -24,7 +24,7 @@ export default function BookingForm({initialProduct}:{initialProduct:string}){
     <div className="field"><label htmlFor="name">Your name *</label><input id="name" name="name" required minLength={2} maxLength={100} placeholder="What should we call you?"/></div>
     <div className="field"><label htmlFor="email">Email address *</label><input id="email" type="email" name="email" required placeholder="you@example.com"/></div>
     <div className="field"><label htmlFor="phone">Phone / WhatsApp *</label><input id="phone" name="phone" required minLength={7} maxLength={25} placeholder="+91 ..."/></div>
-    <div className="field"><label htmlFor="product">What would you like? *</label><select id="product" name="product" defaultValue={products.includes(initialProduct)?initialProduct:""} required><option value="" disabled>Choose a creation</option>{products.map(p=><option key={p}>{p}</option>)}</select></div>
+    <div className="field"><label htmlFor="product">What would you like? *</label><select id="product" name="product" defaultValue={bookingProducts.some(p=>p===initialProduct)?initialProduct:""} required><option value="" disabled>Choose a creation</option>{bookingProducts.map(p=><option key={p}>{p}</option>)}</select></div>
     <div className="field"><label htmlFor="occasion">Occasion *</label><input id="occasion" name="occasion" required minLength={2} maxLength={100} placeholder="Birthday, anniversary, just because..."/></div>
     <div className="field"><label htmlFor="neededBy">Needed by</label><input id="neededBy" name="neededBy" type="date"/></div>
     <div className="field full"><label htmlFor="budget">Approximate budget (optional)</label><select id="budget" name="budget" defaultValue=""><option value="">Let’s discuss it</option><option>Under ₹300</option><option>₹300–₹500</option><option>₹500–₹800</option><option>₹800+</option></select></div>

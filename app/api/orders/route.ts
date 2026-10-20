@@ -4,12 +4,13 @@ import { getDb } from "@/db";
 import { orders } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
 import { z } from "zod";
+import { bookingProducts } from "@/lib/products";
 
 const schema=z.object({
   name:z.string().trim().min(2).max(100),
   email:z.string().email().max(200),
   phone:z.string().trim().min(7).max(25),
-  product:z.enum(["Handmade cards","Thoughtful gift boxes","Mini paintings","Something else"]),
+  product:z.enum(bookingProducts),
   occasion:z.string().trim().min(2).max(100),
   neededBy:z.string().max(30).optional().nullable(),
   budget:z.string().max(80).optional().nullable(),

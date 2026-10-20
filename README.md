@@ -16,9 +16,11 @@ Then run:
 
 The public booking page is at /book. The private dashboard is at /admin. An approved studio member signs in with a one-time email code at /admin/sign-in. The API requires a verified email in ADMIN_EMAILS before reading or changing any order.
 
+The collection and booking choices cover crochet book covers and accessories, personalised pebble art, shell art, embroidered felt bookmarks, and leaf-shaped patchwork pouches. Product photographs are original concept imagery; confirm the final design and quote with each customer.
+
 ## Deployment
 
-The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into builds and the running app. Set ADMIN_EMAILS as an application environment value. The build command runs next build. At startup, an idempotent script creates any missing booking table and then runs next start on the platform port.
+The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into the running app. Set ADMIN_EMAILS as an application environment value. The build command runs next build. At startup, an idempotent script creates any missing booking table and then runs next start on the platform port. No Drizzle Kit migration is configured: its separate deploy migration job did not receive DATABASE_URL, so table setup belongs to the application startup step.
 
 The old ChatGPT Sites deployment has separate storage. Its data is not shared with Antideploy. At migration time, that old database had no customer orders.
 
