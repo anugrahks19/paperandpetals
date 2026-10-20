@@ -54,6 +54,5 @@ next-env.d.ts
 /.codex/
 /outputs/
 /work/
-/drizzle-pg/
 /.dev.vars
 *.tsbuildinfo

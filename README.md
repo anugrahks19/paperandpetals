@@ -20,7 +20,7 @@ The collection and booking choices cover crochet book covers and accessories, pe
 
 ## Deployment
 
-The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into the running app. Set ADMIN_EMAILS as an application environment value. The build command runs next build. At startup, an idempotent script creates any missing booking table and then runs next start on the platform port. No Drizzle Kit migration is configured: its separate deploy migration job did not receive DATABASE_URL, so table setup belongs to the application startup step.
+The application ID is saved in .antideploy.json. Antideploy injects DATABASE_URL and Neon Auth variables into the migration job and the running app. Set ADMIN_EMAILS as an application environment value. The build command runs next build. Antideploy runs `drizzle-kit migrate` before release using `drizzle.config.ts` and the checked-in `drizzle-pg` journal. The initial migration uses `IF NOT EXISTS` because the existing database may already have the orders table. At startup, an idempotent script also ensures the table and indexes exist before running next start on the platform port.
 
 The old ChatGPT Sites deployment has separate storage. Its data is not shared with Antideploy. At migration time, that old database had no customer orders.
 
