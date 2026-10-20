@@ -1,0 +1,35 @@
+.ribbon .ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: ribbon-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.ribbon .ribbon-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-shrink: 0;
+  min-width: 100vw;
+}
+
+.ribbon .ribbon-group span {
+  display: inline-flex;
+  align-items: center;
+  gap: 42px;
+  padding: 0 22px;
+}
+
+.ribbon .ribbon-group b {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 0;
+}
+
+@keyframes ribbon-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon .ribbon-track { animation: none; }
+}
